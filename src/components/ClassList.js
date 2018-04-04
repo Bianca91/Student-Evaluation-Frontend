@@ -35,7 +35,25 @@ class ClassList extends PureComponent {
           <tbody>
             {classess.map(cl => (
               <tr key={cl.id}>
-                <td>{cl.bacthNr}</td>
+                <td>{cl.batchNr}</td>
+                <td>{cl.startDate}</td>
+                <td>{cl.endDate}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Batch #</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {classess.map(cl => (
+              <tr key={cl.id}>
+                <td>{cl.batchNr}</td>
                 <td>{cl.startDate}</td>
                 <td>{cl.endDate}</td>
               </tr>
@@ -43,6 +61,8 @@ class ClassList extends PureComponent {
           </tbody>
         </table>
       </div>
+
+
     );
   }
 }
