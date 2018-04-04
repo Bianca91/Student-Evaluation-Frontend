@@ -4,7 +4,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import LoginPage from "./containers/LoginPage";
 import ClassList from "./components/ClassList";
-
+import StudentsList from "./components/StudentsList"
 
 class App extends Component {
   render() {
@@ -13,6 +13,7 @@ class App extends Component {
         <div className="App">
           <Route exact path="/classess" component={ClassList} />
           <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/students" component={StudentsList} />
         </div>
       </Router>
     );
