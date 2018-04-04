@@ -14,9 +14,4 @@ export const fetchClassess = () => (dispatch) => {
     }))
     .catch(err => alert(err))
 }
-//
-// export const fetchAllProducts = () => (dispatch) => {
-//   // ... implement!
-//   // Hint: make sure to use json.products and not json as payload,
-//   // because you send back an envelope! (so response.body.products)
-// }
+
