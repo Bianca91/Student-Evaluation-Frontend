@@ -10,7 +10,7 @@ class LoginPage extends PureComponent {
   };
 
   render() {
-    if (this.props.currentUser) return <Redirect to="/" />;
+    if (this.props.currentUser) return <Redirect to="/classess" />;
     console.log(this.props.currentUser);
     return (
       <div>

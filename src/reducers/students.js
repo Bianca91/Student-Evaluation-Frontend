@@ -1,11 +1,11 @@
-import {FETCHED_STUDENTS} from '../actions/getStudents'
+import { FETCHED_STUDENTS } from "../actions/getStudents";
 
-export default function (state = [], action) {
+export default function(state = [], action) {
   switch (action.type) {
     case FETCHED_STUDENTS:
-      return action.payload
+      return action.payload;
 
     default:
-      return state
+      return state;
   }
 }
