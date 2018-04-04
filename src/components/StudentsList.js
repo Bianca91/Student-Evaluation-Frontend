@@ -2,6 +2,8 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchStudents } from "../actions/getStudents";
+import { Link } from "react-router-dom";
+import StudentPicture from "../components/StudentPicture";
 
 class StudentsList extends PureComponent {
   static propTypes = {
@@ -10,7 +12,8 @@ class StudentsList extends PureComponent {
         id: PropTypes.number.isRequired,
         firstName: PropTypes.string.isRequired,
         lastName: PropTypes.string.isRequired,
-        profilePicture: PropTypes.string.isRequired
+        profilePicture: PropTypes.string.isRequired,
+        color: PropTypes.string.isRequired
       })
     ).isRequired
   };
@@ -21,26 +24,30 @@ class StudentsList extends PureComponent {
 
   render() {
     const { students } = this.props;
+    console.log(students.profilePicture);
     return (
       <div>
         <h1>Students</h1>
 
         <table>
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Name</th>
-              <th>Last Name</th>
-              <th>Link to Profile</th>
-            </tr>
-          </thead>
           <tbody>
             {students.map(student => (
               <tr key={student.id}>
-                <td>{student.id}</td>
-                <td>{student.name}</td>
-                <td>{student.lastName}</td>
-                <td>{student.profilePicture}</td>
+                <td>
+                  <Link to={`/students/${student.id}`}>
+                    {student.firstName}
+                  </Link>
+                </td>
+                <td>
+                  <Link to={`/students/${student.id}`}>{student.lastName}</Link>
+                </td>
+
+                <td>
+                  <Link to={`/students/${student.id}`}>
+                    <StudentPicture image={student.profilePicture} />
+                  </Link>
+                </td>
+                <td>{student.color}</td>
               </tr>
             ))}
           </tbody>
