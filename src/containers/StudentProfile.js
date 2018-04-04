@@ -12,7 +12,7 @@ class StudentProfile extends PureComponent {
         firstName: PropTypes.string.isRequired,
         lastName: PropTypes.string.isRequired,
         profilePicture: PropTypes.string.isRequired,
-        colors: PropTypes.string.isRequired
+        color: PropTypes.string.isRequired
       })
     ).isRequired
   };
@@ -23,26 +23,26 @@ class StudentProfile extends PureComponent {
 
   render() {
     const { student } = this.props;
-    
-    console.log(student);
+    console.log(student.color);
     return (
       <div>
-        <h1>{this.props.firstName}</h1>
+        <h1>{student.firstName} {student.lastName}</h1>
+        <h3> {student.color}</h3>
         <div class="col s4">
           <div class="card">
             <div class="card-image">
-              <StudentPicture image={this.props.profilePicture} />
+              <StudentPicture image={student.profilePicture} />
               <button
                 class="btn-floating btn-large left hoverable halfway-fab"
                 onClick={this.handleDislikeButton}
               >
-                <i class="material-icons left" />Delete Student
+                <i class="material-icons left" />Save
               </button>
               <button
                 className="btn-floating btn-large right hoverable halfway-fab"
                 onClick={this.handleLikeButton}
               >
-                <i class="material-icons left" />Update Student Profile
+                <i class="material-icons left" />Save & Next
               </button>
             </div>
             <div class="card-content" />

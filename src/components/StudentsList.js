@@ -35,13 +35,9 @@ class StudentsList extends PureComponent {
               <tr key={student.id}>
                 <td>
                   <Link to={`/students/${student.id}`}>
-                    {student.firstName}
+                    {student.firstName} {student.lastName}
                   </Link>
                 </td>
-                <td>
-                  <Link to={`/students/${student.id}`}>{student.lastName}</Link>
-                </td>
-
                 <td>
                   <Link to={`/students/${student.id}`}>
                     <StudentPicture image={student.profilePicture} />
