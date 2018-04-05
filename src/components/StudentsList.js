@@ -1,7 +1,11 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchStudents, createStudent } from "../actions/getStudents";
+import {
+  fetchStudents,
+  createStudent,
+  deleteStudent
+} from "../actions/getStudents";
 import { Link } from "react-router-dom";
 import StudentPicture from "../components/StudentPicture";
 import StudentForm from "../components/StudentForm";
@@ -27,6 +31,10 @@ class StudentsList extends PureComponent {
     this.props.createStudent(student);
   };
 
+  deleteStudent = studentId => {
+    this.props.deleteStudent(studentId);
+  };
+
   render() {
     const { students } = this.props;
     console.log(students.profilePicture);
@@ -45,7 +53,7 @@ class StudentsList extends PureComponent {
                 </td>
                 <td>
                   <Link to={`/students/${student.id}`}>
-                    <StudentPicture image={student.profilePicture} />
+                    <StudentPicture profilePicture={student.profilePicture} />
                   </Link>
                 </td>
                 <td>{student.color}</td>
@@ -65,6 +73,8 @@ const mapStateToProps = function(state) {
     students: state.students
   };
 };
-export default connect(mapStateToProps, { fetchStudents, createStudent })(
-  StudentsList
-);
+export default connect(mapStateToProps, {
+  fetchStudents,
+  createStudent,
+  deleteStudent
+})(StudentsList);

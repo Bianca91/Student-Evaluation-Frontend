@@ -2,9 +2,14 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import StudentPicture from "../components/StudentPicture";
-import { fetchStudentProfile } from "../actions/getStudents";
+import { fetchStudentProfile, editStudent } from "../actions/getStudents";
+import StudentForm from '../components/StudentForm'
 
 class StudentProfile extends PureComponent {
+  state = {
+    edit: false
+  };
+
   static propTypes = {
     student: PropTypes.arrayOf(
       PropTypes.shape({
@@ -21,33 +26,57 @@ class StudentProfile extends PureComponent {
     this.props.fetchStudentProfile(this.props.match.params.id);
   }
 
+  toggleEdit = () => {
+    this.setState({
+      edit: !this.state.edit
+    });
+  };
+
+  editStudent = (student) => {
+    this.props.editStudent(this.props.match.params.id, student)
+    this.toggleEdit()
+  }
+
   render() {
     const { student } = this.props;
+    if (!student) return null;
+
     console.log(student.color);
     return (
       <div>
-        <h1>{student.firstName} {student.lastName}</h1>
-        <h3> {student.color}</h3>
-        <div class="col s4">
-          <div class="card">
-            <div class="card-image">
-              <StudentPicture image={student.profilePicture} />
-              <button
-                class="btn-floating btn-large left hoverable halfway-fab"
-                onClick={this.handleDislikeButton}
-              >
-                <i class="material-icons left" />Save
-              </button>
-              <button
-                className="btn-floating btn-large right hoverable halfway-fab"
-                onClick={this.handleLikeButton}
-              >
-                <i class="material-icons left" />Save & Next
-              </button>
-            </div>
-            <div class="card-content" />
+        <h1>
+          {student.firstName} {student.lastName}
+        </h1>
+        {
+          this.state.edit &&
+          <StudentForm initialValues={student} onSubmit={this.editStudent} />
+        }
+
+        {
+          !this.state.edit &&
+          <div class="col s4">
+            <h3> {student.color}</h3>
+            <StudentPicture profilePicture={student.profilePicture} />
+            <button
+              class="btn-floating btn-large left hoverable halfway-fab"
+              onClick={this.handleDislikeButton}
+            >
+              <i class="material-icons left" />Save
+            </button>
+            <button
+              className="btn-floating btn-large right hoverable halfway-fab"
+              onClick={this.handleLikeButton}
+            >
+              <i class="material-icons left" />Save & Next
+            </button>
+            <button
+              className="btn-floating btn-large right hoverable halfway-fab"
+              onClick={this.toggleEdit}
+            >
+              <i class="material-icons left" />Edit
+            </button>
           </div>
-        </div>
+        }
       </div>
     );
   }
@@ -59,6 +88,6 @@ const mapStateToProps = function(state, props) {
   };
 };
 
-export default connect(mapStateToProps, { fetchStudentProfile })(
+export default connect(mapStateToProps, { fetchStudentProfile, editStudent })(
   StudentProfile
 );

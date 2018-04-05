@@ -1,7 +1,9 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchClassess } from "../actions/classess";
+import { fetchClassess, createClass } from "../actions/classess";
+import { Link } from "react-router-dom";
+import ClassForm from "./ClassForm";
 
 class ClassList extends PureComponent {
   static propTypes = {
@@ -18,51 +20,38 @@ class ClassList extends PureComponent {
     this.props.fetchClassess();
   }
 
+  createClass = cl => {
+    this.props.createClass(cl);
+  };
+
   render() {
     const { classess } = this.props;
+    console.log(classess);
     return (
       <div>
         <h1>Classes</h1>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Batch #</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {classess.map(cl => (
-              <tr key={cl.id}>
-                <td>{cl.batchNr}</td>
-                <td>{cl.startDate}</td>
-                <td>{cl.endDate}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <table>
-          <thead>
-            <tr>
-              <th>Batch #</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {classess.map(cl => (
-              <tr key={cl.id}>
-                <td>{cl.batchNr}</td>
-                <td>{cl.startDate}</td>
-                <td>{cl.endDate}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div>
+          <table>
+            <tbody>
+              {classess.map(cl => (
+                <tr key={cl.id}>
+                  <td>
+                    <Link to={`/students`}>{cl.batchNr}</Link>
+                  </td>
+                  <div>
+                  <td>{cl.startDate}</td>
+                  </div>
+                  <div>
+                  <td>{cl.endDate}</td>
+                  </div>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <h1>Add a new Class </h1>
+        <ClassForm onSubmit={this.createClass} />
       </div>
-
-
     );
   }
 }
@@ -72,4 +61,6 @@ const mapStateToProps = function(state) {
     classess: state.classess
   };
 };
-export default connect(mapStateToProps, { fetchClassess })(ClassList);
+export default connect(mapStateToProps, { fetchClassess, createClass })(
+  ClassList
+);
