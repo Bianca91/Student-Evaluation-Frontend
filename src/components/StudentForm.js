@@ -47,8 +47,6 @@ class StudentForm extends PureComponent {
             this.state.color || initialValues.color || ''
           } onChange={ this.handleChange } />
         </div>
-
-
 				<button type="submit">Save</button>
 			</form>
 		)
