@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import StudentPicture from "../components/StudentPicture";
 import { fetchStudentProfile, editStudent } from "../actions/getStudents";
 import StudentForm from '../components/StudentForm'
+import Colors from '../components/Colors'
 
 class StudentProfile extends PureComponent {
   state = {
@@ -17,7 +18,7 @@ class StudentProfile extends PureComponent {
         firstName: PropTypes.string.isRequired,
         lastName: PropTypes.string.isRequired,
         profilePicture: PropTypes.string.isRequired,
-        color: PropTypes.string.isRequired
+        colors: PropTypes.string.isRequired
       })
     ).isRequired
   };
@@ -39,13 +40,14 @@ class StudentProfile extends PureComponent {
 
   render() {
     const { student } = this.props;
+    console.log(student)
     if (!student) return null;
 
-    console.log(student.color);
+    
     return (
       <div>
         <h1>
-          {student.firstName} {student.lastName}
+          {student.firstName} {student.lastName} {student.color}
         </h1>
         {
           this.state.edit &&
@@ -55,7 +57,7 @@ class StudentProfile extends PureComponent {
         {
           !this.state.edit &&
           <div class="col s4">
-            <h3> {student.color}</h3>
+            <Colors />
             <StudentPicture profilePicture={student.profilePicture} />
             <button
               class="btn-floating btn-large left hoverable halfway-fab"
