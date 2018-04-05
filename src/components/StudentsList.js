@@ -1,9 +1,10 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchStudents } from "../actions/getStudents";
+import { fetchStudents, createStudent } from "../actions/getStudents";
 import { Link } from "react-router-dom";
 import StudentPicture from "../components/StudentPicture";
+import StudentForm from "../components/StudentForm";
 
 class StudentsList extends PureComponent {
   static propTypes = {
@@ -21,6 +22,10 @@ class StudentsList extends PureComponent {
   componentWillMount() {
     this.props.fetchStudents();
   }
+
+  createStudent = student => {
+    this.props.createStudent(student);
+  };
 
   render() {
     const { students } = this.props;
@@ -48,6 +53,8 @@ class StudentsList extends PureComponent {
             ))}
           </tbody>
         </table>
+        <h1>Add a new Student</h1>
+        <StudentForm onSubmit={this.createStudent} />
       </div>
     );
   }
@@ -58,4 +65,6 @@ const mapStateToProps = function(state) {
     students: state.students
   };
 };
-export default connect(mapStateToProps, { fetchStudents })(StudentsList);
+export default connect(mapStateToProps, { fetchStudents, createStudent })(
+  StudentsList
+);
