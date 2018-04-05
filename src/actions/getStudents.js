@@ -4,6 +4,7 @@ const baseUrl = 'http://localhost:4000'
 
 export const FETCHED_STUDENTS = 'FETCHED_STUDENTS'
 export const FETCHED_STUDENT_PROFILE = 'FETCHED_STUDENT_PROFILE'
+export const ADD_STUDENT = 'ADD_STUDENT'
 
 export const fetchStudents = () => (dispatch) => {
   request
@@ -23,4 +24,14 @@ export const fetchStudentProfile = (studentId) => (dispatch) => {
       payload: response.body
     }))
     .catch(err => alert(err))
+}
+
+export const createStudent = (student) => (dispatch) => {
+  request
+    .post(`${baseUrl}/students`)
+    .send(student)
+    .then(response => dispatch({
+      type: ADD_STUDENT,
+      payload: response.body
+    }))
 }
