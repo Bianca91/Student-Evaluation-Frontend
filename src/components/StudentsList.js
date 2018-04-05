@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import StudentPicture from "../components/StudentPicture";
 import StudentForm from "../components/StudentForm";
+import NavBar from "../components/NavBar";
 
 class StudentsList extends PureComponent {
   static propTypes = {
@@ -17,8 +18,7 @@ class StudentsList extends PureComponent {
         id: PropTypes.number.isRequired,
         firstName: PropTypes.string.isRequired,
         lastName: PropTypes.string.isRequired,
-        profilePicture: PropTypes.string.isRequired,
-        color: PropTypes.string.isRequired
+        profilePicture: PropTypes.string.isRequired
       })
     ).isRequired
   };
@@ -40,6 +40,7 @@ class StudentsList extends PureComponent {
     console.log(students.profilePicture);
     return (
       <div>
+        <NavBar />
         <h1>Students</h1>
 
         <table>
@@ -56,7 +57,6 @@ class StudentsList extends PureComponent {
                     <StudentPicture profilePicture={student.profilePicture} />
                   </Link>
                 </td>
-                <td>{student.color}</td>
               </tr>
             ))}
           </tbody>

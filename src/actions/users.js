@@ -5,6 +5,7 @@ const baseUrl = "http://localhost:4000";
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 export const USER_LOGIN_FAILED = "USER_LOGIN_FAILED";
 export const UPDATE_USER = "UPDATE_USER";
+export const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS'
 
 export const login = (email, password) => dispatch => {
   request
@@ -43,3 +44,10 @@ export const getUsers = () => (dispatch, getState) => {
     })
     .catch(err => console.error(err));
 };
+
+export const logout = () => {
+      return {
+        type: USER_LOGOUT_SUCCESS,
+        payload: null
+      }
+    }

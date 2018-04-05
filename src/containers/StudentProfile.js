@@ -3,12 +3,14 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import StudentPicture from "../components/StudentPicture";
 import { fetchStudentProfile, editStudent } from "../actions/getStudents";
-import StudentForm from '../components/StudentForm'
-import Colors from '../components/Colors'
+import StudentForm from "../components/StudentForm";
+import Colors from "../components/Colors";
+import NavBar from "../components/NavBar";
 
 class StudentProfile extends PureComponent {
   state = {
-    edit: false
+    edit: false,
+    review: ""
   };
 
   static propTypes = {
@@ -27,38 +29,50 @@ class StudentProfile extends PureComponent {
     this.props.fetchStudentProfile(this.props.match.params.id);
   }
 
+  handleChange(event) {
+    this.setState({ review: event.target.value });
+  }
+
   toggleEdit = () => {
     this.setState({
       edit: !this.state.edit
     });
   };
 
-  editStudent = (student) => {
-    this.props.editStudent(this.props.match.params.id, student)
-    this.toggleEdit()
-  }
+  editStudent = student => {
+    this.props.editStudent(this.props.match.params.id, student);
+    this.toggleEdit();
+  };
 
   render() {
     const { student } = this.props;
-    console.log(student)
+    console.log(student);
     if (!student) return null;
 
-    
     return (
       <div>
+        <NavBar />
         <h1>
-          {student.firstName} {student.lastName} {student.color}
+          {student.firstName} {student.lastName}
         </h1>
-        {
-          this.state.edit &&
+        {this.state.edit && (
           <StudentForm initialValues={student} onSubmit={this.editStudent} />
-        }
+        )}
 
-        {
-          !this.state.edit &&
+        {!this.state.edit && (
           <div class="col s4">
             <Colors />
+
             <StudentPicture profilePicture={student.profilePicture} />
+            <div>
+              <textarea
+                type="text"
+                name="review"
+                placeholder="Review"
+                value={this.state.review}
+                onChange={this.handleChange.bind(this)}
+              />
+            </div>
             <button
               class="btn-floating btn-large left hoverable halfway-fab"
               onClick={this.handleDislikeButton}
@@ -78,7 +92,7 @@ class StudentProfile extends PureComponent {
               <i class="material-icons left" />Edit
             </button>
           </div>
-        }
+        )}
       </div>
     );
   }

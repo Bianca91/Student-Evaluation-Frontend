@@ -31,9 +31,3 @@ const mapStateToProps = function(state) {
 };
 
 export default connect(mapStateToProps, { login })(LoginPage);
-
-/*
-Add the LoginPage component and add a <p> just below the form that shows the state.login.error in red if it's set.
-This way we show an error if the login was not successful. Hint: first make the
-state.login.error available via mapStateToProps and then retrieve it from your props in your render function.
-*/

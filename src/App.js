@@ -7,7 +7,6 @@ import ClassList from "./components/ClassList";
 import StudentsList from "./components/StudentsList";
 import StudentProfile from "./containers/StudentProfile";
 
-
 class App extends Component {
   render() {
     return (
