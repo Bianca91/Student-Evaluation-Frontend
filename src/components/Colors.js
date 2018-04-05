@@ -47,7 +47,7 @@ class Colors extends Component {
             Green
           </Button>
         </ButtonGroup>
-        <p>Selected: {this.state.color}</p>
+        <p>Progress: {this.state.color}</p>
       </div>
     );
   }

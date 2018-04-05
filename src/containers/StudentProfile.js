@@ -81,14 +81,6 @@ class StudentProfile extends PureComponent {
             <div>
               <DatePicker onChange={this.onChange} value={this.state.date} />
             </div>
-            <div>
-              <button
-                value="Red"
-                raised={true}
-                theme="dark"
-                overrides={{ backgroundColor: "red" }}
-              />
-            </div>
             <button
               className="btn-floating btn-large left hoverable halfway-fab"
               onClick={this.handleDislikeButton}
