@@ -7,12 +7,14 @@ import StudentForm from "../components/StudentForm";
 import Colors from "../components/Colors";
 import NavBar from "../components/NavBar";
 import DatePicker from "react-date-picker";
+import Example from "../components/Colors"
 
 class StudentProfile extends PureComponent {
   state = {
     edit: false,
     review: "",
-    date: new Date()
+    date: new Date(),
+    color: "null"
   };
 
   static propTypes = {
@@ -64,9 +66,8 @@ class StudentProfile extends PureComponent {
         )}
 
         {!this.state.edit && (
-          <div class="col s4">
+          <div className="col s4">
             <Colors />
-
             <StudentPicture profilePicture={student.profilePicture} />
             <div>
               <textarea
@@ -80,23 +81,31 @@ class StudentProfile extends PureComponent {
             <div>
               <DatePicker onChange={this.onChange} value={this.state.date} />
             </div>
+            <div>
+              <button
+                value="Red"
+                raised={true}
+                theme="dark"
+                overrides={{ backgroundColor: "red" }}
+              />
+            </div>
             <button
-              class="btn-floating btn-large left hoverable halfway-fab"
+              className="btn-floating btn-large left hoverable halfway-fab"
               onClick={this.handleDislikeButton}
             >
-              <i class="material-icons left" />Save
+              <i className="material-icons left" />Save
             </button>
             <button
               className="btn-floating btn-large right hoverable halfway-fab"
               onClick={this.handleLikeButton}
             >
-              <i class="material-icons left" />Save & Next
+              <i className="material-icons left" />Save & Next
             </button>
             <button
               className="btn-floating btn-large right hoverable halfway-fab"
               onClick={this.toggleEdit}
             >
-              <i class="material-icons left" />Edit
+              <i className="material-icons left" />Edit
             </button>
           </div>
         )}
