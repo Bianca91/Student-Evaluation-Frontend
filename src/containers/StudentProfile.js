@@ -43,11 +43,11 @@ class StudentProfile extends PureComponent {
     console.log(student)
     if (!student) return null;
 
-    
+
     return (
       <div>
         <h1>
-          {student.firstName} {student.lastName} {student.color}
+          {student.firstName} {student.lastName}
         </h1>
         {
           this.state.edit &&
