@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { fetchClassess, createClass } from "../actions/classess";
 import { Link } from "react-router-dom";
 import ClassForm from "./ClassForm";
+import NavBar from "../components/NavBar";
 
 class ClassList extends PureComponent {
   static propTypes = {
@@ -29,6 +30,7 @@ class ClassList extends PureComponent {
     console.log(classess);
     return (
       <div>
+      <NavBar />
         <h1>Classes</h1>
         <div>
           <table>
