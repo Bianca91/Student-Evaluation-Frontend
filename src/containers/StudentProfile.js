@@ -6,11 +6,13 @@ import { fetchStudentProfile, editStudent } from "../actions/getStudents";
 import StudentForm from "../components/StudentForm";
 import Colors from "../components/Colors";
 import NavBar from "../components/NavBar";
+import DatePicker from "react-date-picker";
 
 class StudentProfile extends PureComponent {
   state = {
     edit: false,
-    review: ""
+    review: "",
+    date: new Date()
   };
 
   static propTypes = {
@@ -44,6 +46,8 @@ class StudentProfile extends PureComponent {
     this.toggleEdit();
   };
 
+  onChange = date => this.setState({ date });
+
   render() {
     const { student } = this.props;
     console.log(student);
@@ -72,6 +76,9 @@ class StudentProfile extends PureComponent {
                 value={this.state.review}
                 onChange={this.handleChange.bind(this)}
               />
+            </div>
+            <div>
+              <DatePicker onChange={this.onChange} value={this.state.date} />
             </div>
             <button
               class="btn-floating btn-large left hoverable halfway-fab"
