@@ -1,0 +1,13 @@
+.Batch {
+  display: flex;
+  justify-content: center;
+}
+
+.BatchNr {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
+  min-width: 440px;
+  max-width: 80%;
+  border: 4px solid Grey;
+}

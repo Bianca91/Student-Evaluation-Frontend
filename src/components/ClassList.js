@@ -5,6 +5,7 @@ import { fetchClassess, createClass } from "../actions/classess";
 import { Link } from "react-router-dom";
 import ClassForm from "./ClassForm";
 import NavBar from "../components/NavBar";
+import "./ClassList.css";
 
 class ClassList extends PureComponent {
   static propTypes = {
@@ -30,21 +31,23 @@ class ClassList extends PureComponent {
     console.log(classess);
     return (
       <div>
-      <NavBar />
+        <NavBar />
         <h1>Classes</h1>
-        <div>
+        <div className="Batch">
           <table>
             <tbody>
               {classess.map(cl => (
                 <tr key={cl.id}>
-                  <td>
-                    <Link to={`/students`}>{cl.batchNr}</Link>
-                  </td>
-                  <div>
-                  <td>{cl.startDate}</td>
-                  </div>
-                  <div>
-                  <td>{cl.endDate}</td>
+                  <div className="BatchNr">
+                    <td>
+                      <Link to={`/students`}>
+                        {`Batch # ${cl.batchNr}`}
+                        <br />
+                        {cl.startDate}
+                        <br />
+                        {cl.endDate}
+                      </Link>
+                    </td>
                   </div>
                 </tr>
               ))}
