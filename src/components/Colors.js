@@ -1,51 +1,56 @@
-import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from "react";
+import { Button, ButtonGroup } from "reactstrap";
+import { fetchColors } from "../actions/colors";
 import { connect } from "react-redux";
-import { fetchColors } from '../actions/colors'
 
-class Colors extends PureComponent {
-  static propTypes = {
-    colors: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        red: PropTypes.string.isRequired,
-        yellow: PropTypes.string.isRequired,
-        green: PropTypes.string.isRequired
-      })
-    ).isRequired
-  };
+class Colors extends Component {
+  constructor(props) {
+    super(props);
 
+    this.state = { colors: [] };
 
+    this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
+
+  }
   componentWillMount() {
     this.props.fetchColors();
   }
 
+  onRadioBtnClick(color) {
+    this.setState({ color });
+  }
+
   render() {
-    const { colors } = this.props;
-    console.log(colors);
     return (
       <div>
-        <h1>Student Progress</h1>
-
-        <table>
-          <tbody>
-            {colors.map(color => (
-              <tr key={color.id}>
-                <td>{color.red}</td>
-                <td>{color.yellow} </td>
-                <td>{color.green}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <h5>Radio Buttons</h5>
+        <ButtonGroup>
+          <Button
+            color="primary"
+            onClick={() => this.onRadioBtnClick("Red")}
+            active={this.state.color === "red"}
+          >
+            Red
+          </Button>
+          <Button
+            color="primary"
+            onClick={() => this.onRadioBtnClick("Yellow")}
+            active={this.state.color === "yellow"}
+          >
+            Yellow
+          </Button>
+          <Button
+            color="primary"
+            onClick={() => this.onRadioBtnClick("Green")}
+            active={this.state.color === "green"}
+          >
+            Green
+          </Button>
+        </ButtonGroup>
+        <p>Selected: {this.state.color}</p>
       </div>
     );
   }
 }
 
-const mapStateToProps = function(state) {
-  return {
-    colors: state.colors
-  };
-};
-export default connect(mapStateToProps, { fetchColors})(Colors);
+export default connect(null, { fetchColors })(Colors);
