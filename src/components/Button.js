@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { selectStudent } from "../actions/colors";
+import { selectStudent } from "../actions/selectedStudent";
 
 export class NextQButton extends PureComponent {
   static propTypes = {

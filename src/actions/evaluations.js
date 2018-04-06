@@ -1,86 +1,86 @@
 import * as request from "superagent";
 const baseUrl = "http://localhost:4000";
 
-export const FETCHED_STUDENTS = "FETCHED_STUDENTS";
-export const FETCHED_STUDENT_PROFILE = "FETCHED_STUDENT_PROFILE";
-export const ADD_STUDENT = "ADD_STUDENT";
-export const REMOVE_STUDENT = "REMOVE_STUDENT";
-export const EDIT_STUDENT = "EDIT_STUDENT";
+export const FETCHED_EVALUATIONS = "FETCHED_EVALUATIONS";
+export const FETCHED_STUDENT_EVALUATION = "FETCHED_STUDENT_EVALUATION";
+export const ADD_EVALUATION = "ADD_EVALUATION";
+export const REMOVE_EVALUATION = "REMOVE_EVALUATION";
+export const EDIT_EVALUATION = "EDIT_EVALUATION";
 
-export const fetchStudents = () => (dispatch, getState) => {
+export const fetchEvaluations = () => (dispatch, getState) => {
   const state = getState();
   const jwt = state.currentUser.jwt;
 
   request
-    .get(`${baseUrl}/students`)
+    .get(`${baseUrl}/evaluation`)
     .set("Authorization", `Bearer ${jwt}`)
     .then(response =>
       dispatch({
-        type: FETCHED_STUDENTS,
+        type: FETCHED_EVALUATIONS,
         payload: response.body
       })
     )
     .catch(err => alert(err));
 };
 
-export const fetchStudentProfile = studentId => (dispatch, getState) => {
+export const fetchStudentEvaluation= evaluationId => (dispatch, getState) => {
   const state = getState();
   const jwt = state.currentUser.jwt;
   request
-    .get(`${baseUrl}/students/${studentId}`)
+    .get(`${baseUrl}/evaluatioin/${evaluationId}`)
     .set("Authorization", `Bearer ${jwt}`)
     .then(response =>
       dispatch({
-        type: FETCHED_STUDENT_PROFILE,
+        type: FETCHED_STUDENT_EVALUATION,
         payload: response.body
       })
     )
     .catch(err => alert(err));
 };
 
-export const createStudent = student => (dispatch, getState) => {
+export const createEvaluation = evaluation => (dispatch, getState) => {
   const state = getState();
   const jwt = state.currentUser.jwt;
 
   request
-    .post(`${baseUrl}/students`)
+    .post(`${baseUrl}/evaluation`)
     .set("Authorization", `Bearer ${jwt}`)
-    .send(student)
+    .send(evaluation)
     .then(response =>
       dispatch({
-        type: ADD_STUDENT,
+        type: ADD_EVALUATION,
         payload: response.body
       })
     );
 };
 
-export const deleteStudent = studentId => (dispatch, getState) => {
+export const deleteEvaluation = evaluationId => (dispatch, getState) => {
   const state = getState();
   const jwt = state.currentUser.jwt;
 
   request
-    .delete(`${baseUrl}/students/${studentId}`)
+    .delete(`${baseUrl}/evaluation/${evaluationId}`)
     .set("Authorization", `Bearer ${jwt}`)
     .then(response =>
       dispatch({
-        type: REMOVE_STUDENT,
-        payload: studentId
+        type: REMOVE_EVALUATION,
+        payload: evaluationId
       })
     );
 };
 
-export const editStudent = (studentId, updates) => (dispatch, getState) => {
+export const editEvaluation = (evaluationId, updates) => (dispatch, getState) => {
   const state = getState();
   const jwt = state.currentUser.jwt;
 
   request
-    .put(`${baseUrl}/students/${studentId}`)
+    .put(`${baseUrl}/evaluation/${evaluationId}`)
     .set("Authorization", `Bearer ${jwt}`)
     .send(updates)
     .then(response =>
       dispatch({
-        type: EDIT_STUDENT,
-        payload: studentId
+        type: EDIT_EVALUATION,
+        payload: evaluationId
       })
     );
 };
