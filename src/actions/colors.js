@@ -1,8 +1,10 @@
 import * as request from "superagent";
+import {nextStudent} from "../lab"
 
 const baseUrl = "http://localhost:4000";
 
 export const FETCHED_COLORS = "FETCHED_COLORS";
+export const SELECT_STUDENT = 'SELECT_STUDENT'
 
 export const fetchColors = () => dispatch => {
   request
@@ -15,3 +17,13 @@ export const fetchColors = () => dispatch => {
     )
     .catch(err => alert(err));
 };
+
+export const selectStudent = () => {
+  const student = nextStudent
+  return {
+    type: "SELECT_STUDENT",
+    payload: {
+      student
+    }
+  }
+}

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import ClassForm from "./ClassForm";
 import NavBar from "../components/NavBar";
 import "./ClassList.css";
+import NextQButton from '../components/Button'
 
 class ClassList extends PureComponent {
   static propTypes = {
@@ -56,6 +57,7 @@ class ClassList extends PureComponent {
         </div>
         <h1>Add a new Class </h1>
         <ClassForm onSubmit={this.createClass} />
+        <NextQButton />
       </div>
     );
   }

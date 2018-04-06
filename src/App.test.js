@@ -10,7 +10,11 @@ describe('<App />', () => {
     expect(app).toHaveClassName('App')
   })
 
-  it('contains a title', () => {
-    expect(app.find('h1.title')).toHaveText('Student Evaluations')
+  it('contains routes', () => {
+    expect(app.find('BrowserRouter')).toHaveText('<BrowserRouter />')
   })
 })
+ // <BrowserRouter><div className="App"><Route exact={true} path="/students/:id" component={[Function: Connect]} />
+ // <Route exact={true} path="/classess" component={[Function: Connect]} />
+ // <Route exact={true} path="/login" component={[Function: Connect]} />
+ // <Route exact={true} path="/students" component={[Function: Connect]} /></div></BrowserRouter>
