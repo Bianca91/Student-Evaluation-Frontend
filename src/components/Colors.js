@@ -23,7 +23,7 @@ class Colors extends Component {
   render() {
     return (
       <div>
-        <h5>Radio Buttons</h5>
+        <h5>Student Progress</h5>
         <ButtonGroup>
           <Button
             color="primary"

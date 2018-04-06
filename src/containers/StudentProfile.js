@@ -7,7 +7,7 @@ import StudentForm from "../components/StudentForm";
 import Colors from "../components/Colors";
 import NavBar from "../components/NavBar";
 import DatePicker from "react-date-picker";
-import Example from "../components/Colors"
+
 
 class StudentProfile extends PureComponent {
   state = {
