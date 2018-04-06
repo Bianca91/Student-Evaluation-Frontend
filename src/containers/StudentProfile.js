@@ -7,7 +7,7 @@ import StudentForm from "../components/StudentForm";
 import Colors from "../components/Colors";
 import NavBar from "../components/NavBar";
 import DatePicker from "react-date-picker";
-
+import { createEvaluation } from "../actions/evaluations";
 
 class StudentProfile extends PureComponent {
   state = {
@@ -36,6 +36,15 @@ class StudentProfile extends PureComponent {
   handleChange(event) {
     this.setState({ review: event.target.value });
   }
+
+  handleSaveButton = () => {
+    this.props.createEvaluation(this.props.colors);
+  };
+
+  handleSaveandNextButton = () => {
+    this.props.updateEvaluation(this.props.colors);
+    //next student
+  };
 
   toggleEdit = () => {
     this.setState({
@@ -83,13 +92,13 @@ class StudentProfile extends PureComponent {
             </div>
             <button
               className="btn-floating btn-large left hoverable halfway-fab"
-              onClick={this.handleDislikeButton}
+              onClick={this.handleSaveButton}
             >
               <i className="material-icons left" />Save
             </button>
             <button
               className="btn-floating btn-large right hoverable halfway-fab"
-              onClick={this.handleLikeButton}
+              onClick={this.handlSaveandNextButton}
             >
               <i className="material-icons left" />Save & Next
             </button>
@@ -112,6 +121,6 @@ const mapStateToProps = function(state, props) {
   };
 };
 
-export default connect(mapStateToProps, { fetchStudentProfile, editStudent })(
+export default connect(mapStateToProps, { fetchStudentProfile, editStudent, createEvaluation })(
   StudentProfile
 );
