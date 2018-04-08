@@ -24,27 +24,8 @@ class StudentList extends PureComponent {
         profilePicture: PropTypes.string.isRequired,
         color: PropTypes.string.isRequired
       })
-    ).isRequired
-  };
-
-  selectStudent = () => {
-    console.log(this.props.evaluation.color)
-    const colorRandom = ["Red", "Yellow", "Green"]
-    const colorWeigth = [0.53, 0.28, 0.19];
-    const totalWeight = eval(colorWeigth.join("+"));
-    const weighedColors = new Array();
-    var currentColor = 0;
-    // push evaluation.color in new arrayOf
-    // while under that arrayO
-    // return student name
-    while (currentColor < colorRandom.length) {
-      for (let i = 0; i < colorWeigth[currentColor]; i++)
-        weighedColors[weighedColors.length] = this.props.studentName.color[currentColor];
-      currentColor++;
-    }
-
-    const randomStudent = Math.floor(Math.random() * totalWeight);
-    document.write(weighedColors[randomStudent]);
+    ).isRequired,
+    selectStudent: PropTypes.func.isRequired
   };
 
   componentWillMount() {
@@ -53,34 +34,33 @@ class StudentList extends PureComponent {
 
   render() {
     const { evaluation } = this.props;
+
     return (
-      <CardColumns className="Students">
-        <NavBar />
-        {evaluation.map(x => (
-          <Card key={x.id}>
-            <CardBody className="Info">
-              <CardTitle>
-                <Link to={`/evaluation/${x.id}`}>
-                  {" "}
-                  {x.studentName} {x.studentLastName}
-                </Link>
-              </CardTitle>
-              <div>
-                <Link to={`/evaluation/${x.id}`}>
-                  <StudentPicture profilePicture={x.profilePicture} />
-                </Link>
-              </div>
-              <CardSubtitle>{x.color}</CardSubtitle>
-            </CardBody>
-          </Card>
-        ))}
-        <button
-          className="btn-floating btn-large right hoverable halfway-fab"
-          onClick={this.selectStudent}
-        >
-          <i className="material-icons left" />Ask a Question
-        </button>
-      </CardColumns>
+      <div>
+        <CardColumns className="Students">
+          <NavBar />
+          {evaluation.map(x => (
+            <Card key={x.id}>
+              <CardBody className="Info">
+                <CardTitle>
+                  <Link to={`/evaluation/${x.id}`}>
+                    {" "}
+                    {x.studentName} {x.studentLastName}
+                  </Link>
+                </CardTitle>
+                <div>
+                  <Link to={`/evaluation/${x.id}`}>
+                    <StudentPicture profilePicture={x.profilePicture} />
+                  </Link>
+                </div>
+
+                <CardSubtitle>{x.color}</CardSubtitle>
+              </CardBody>
+            </Card>
+          ))}
+        </CardColumns>
+        <div />
+      </div>
     );
   }
 }
