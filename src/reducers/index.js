@@ -1,15 +1,13 @@
 import currentUser from './currentUser'
 import login from './login'
 import classess from './classess'
-import students from './students'
-import student from './student'
-import colors from './colors'
+import evaluation from './evaluation'
+import detailedEvaluation from './detailedEvaluation'
 
 export default {
   currentUser,
   login,
   classess,
-  students,
-  student,
-  colors
+  evaluation,
+  detailedEvaluation
 }

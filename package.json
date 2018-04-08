@@ -4,6 +4,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "material-ui": "^1.0.0-beta.40",
+    "material-ui-icons": "^1.0.0-beta.36",
     "react": "^16.3.1",
     "react-date-picker": "^6.10.1",
     "react-datepicker": "^1.4.0",
@@ -16,7 +18,8 @@
     "reactstrap": "^5.0.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "superagent": "^3.8.2"
+    "superagent": "^3.8.2",
+    "typeface-roboto": "^0.0.54"
   },
   "scripts": {
     "start": "react-scripts start",
