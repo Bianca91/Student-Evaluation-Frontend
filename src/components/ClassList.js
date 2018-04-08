@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import ClassForm from "./ClassForm";
 import NavBar from "../components/NavBar";
 import "./ClassList.css";
-import NextQButton from '../components/Button'
 
 class ClassList extends PureComponent {
   static propTypes = {
@@ -41,7 +40,7 @@ class ClassList extends PureComponent {
                 <tr key={cl.id}>
                   <div className="BatchNr">
                     <td>
-                      <Link to={`/students`}>
+                      <Link to={`/evaluation`}>
                         {`Batch # ${cl.batchNr}`}
                         <br />
                         {cl.startDate}
@@ -57,7 +56,6 @@ class ClassList extends PureComponent {
         </div>
         <h1>Add a new Class </h1>
         <ClassForm onSubmit={this.createClass} />
-        <NextQButton />
       </div>
     );
   }

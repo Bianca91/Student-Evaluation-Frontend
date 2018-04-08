@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Button, ButtonGroup } from "reactstrap";
-import { fetchColors } from "../actions/colors";
 import { connect } from "react-redux";
 
+//need to bring evaluations in here
 class Colors extends Component {
   constructor(props) {
     super(props);
@@ -12,18 +12,14 @@ class Colors extends Component {
     this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
 
   }
-  componentWillMount() {
-    this.props.fetchColors();
-  }
-
-  onRadioBtnClick(color) {
+    onRadioBtnClick(color) {
     this.setState({ color });
   }
 
   render() {
     return (
       <div>
-        <h5>Student Progress</h5>
+        <h5>Select Progress</h5>
         <ButtonGroup>
           <Button
             color="primary"
@@ -53,4 +49,4 @@ class Colors extends Component {
   }
 }
 
-export default connect(null, { fetchColors })(Colors);
+export default connect(null)(Colors);
