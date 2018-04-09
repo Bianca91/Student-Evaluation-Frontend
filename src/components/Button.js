@@ -12,7 +12,9 @@ import { Link } from "react-router-dom";
 import StudentPicture from "../components/StudentPicture";
 //import StudentForm from "../components/StudentForm";
 import NavBar from "../components/NavBar";
-import { fetchEvaluation } from "../actions/evaluations";
+import { selectStudent } from "../actions/selectStudent";
+import { students } from "../lib";
+import { Prompt } from "react-router";
 
 const colors = ["Red", "Yellow", "Green"];
 const colorWeigth = [0.53, 0.28, 0.19];
@@ -20,10 +22,11 @@ const totalWeigth = eval(colorWeigth.join("+"));
 const weighedColors = [];
 let currentColor = 0;
 
-for (let i = 0; i < colorWeigth[currentColor]; i++)
-  weighedColors[weighedColors.length] = colors[currentColor];
-currentColor++;
-
+while (currentColor < colors.length) {
+  for (let i = 0; i < colorWeigth[currentColor]; i++)
+    weighedColors[weighedColors.length] = colors[currentColor];
+  currentColor++;
+}
 console.log(totalWeigth);
 console.log(weighedColors);
 
@@ -32,39 +35,38 @@ console.log(weighedColors[randomColor]);
 
 class StudentList extends PureComponent {
   static propTypes = {
-    evaluation: PropTypes.arrayOf(
+    evaluations: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         studentName: PropTypes.string.isRequired,
         studentLastName: PropTypes.string.isRequired,
-        profilePicture: PropTypes.string.isRequired,
         color: PropTypes.string.isRequired
       })
-    ).isRequired,
-    selectStudent: PropTypes.func.isRequired
+    ).isRequired
   };
 
-  constructor() {
-    super();
-    this.state = {
-      studentMatch: false
-    };
-
-    this.selectStudent = this.selectStudent.bind(this);
-  }
-
-  selectStudent() {
-    console.log(this.state.studentMatch);
-    if (this.state.studentMatch === false) {
-      this.setState({ studentMatch: true });
-    } else {
-      this.setState({ studentMatch: false });
+  componentWillMount() {
+      this.props.selectStudent()
     }
+
+  student() {
+    const studentName = students.filter(
+      student => student.color === weighedColors[randomColor]
+    );
+    const randomStudent = Math.floor(Math.random() * studentName.length);
+    if (studentName.lentgh > 2)
+
+    console.log(studentName);
+
+    alert(JSON.stringify(studentName[0]));
+    console.log(studentName);
   }
   render() {
+    if (!students) return null
+
     return (
       <div class="right">
-        <button onClick={weighedColors[randomColor]}>
+        <button onClick={this.student}>
           <a>
             <i class="material-icons" />Ask a Quesiton
           </a>
@@ -73,3 +75,11 @@ class StudentList extends PureComponent {
     );
   }
 }
+
+const mapStateToProps = function(state) {
+  return {
+    evaluations: state.evaluation
+  };
+};
+
+export default connect(mapStateToProps, { selectStudent })(StudentList);
