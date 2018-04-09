@@ -4,6 +4,8 @@ const baseUrl = "http://localhost:4000";
 export const FETCHED_EVALUATION = "FETCHED_EVALUATIONS";
 export const FETCHED_STUDENT_EVALUATION = "FETCHED_STUDENT_EVALUATION";
 export const ADD_EVALUATION = "ADD_EVALUATION";
+export const UPDATE_EVALUATION = "UPDATE_EVALUATION"
+export const UPDATE_EVALUATIONS = "UPDATE_EVALUATIONS"
 
 export const fetchEvaluation = () => (dispatch, getState) => {
   //  const state = getState();
@@ -49,3 +51,14 @@ export const createEvaluation = evaluation => dispatch => {
     )
     .catch(err => alert(err));
 };
+
+export const updateEvaluation = (evaluationId, updates) => (dispatch) => {
+  request
+    .put(`${baseUrl}/evaluation/${evaluationId}`)
+    .send(updates)
+    .then(response =>
+      dispatch({
+      type: UPDATE_EVALUATION,
+      payload: response.body
+    }))
+}

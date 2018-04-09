@@ -32,6 +32,7 @@ class EvaluationForm extends PureComponent {
   };
 
   render() {
+    const initialValues = this.props.initialValues || {}
     return (
       <form onSubmit={this.handleSubmit}>
         <label htmlFor="dailyEvaluation" />
@@ -39,7 +40,7 @@ class EvaluationForm extends PureComponent {
           name="dailyEvaluation"
           id="dailyEvaluation"
           onChange={this.onChange}
-          value={this.state.dailyEvaluation || ""}
+          value={this.state.dailyEvaluation || initialValues.dailyEvaluation || ""}
         />
         <div>
           <label htmlFor="remark" />
@@ -47,7 +48,7 @@ class EvaluationForm extends PureComponent {
             type="text"
             name="remark"
             placeholder="Remark..."
-            value={this.state.remark || ""}
+            value={this.state.remark || initialValues.remark || ""}
             onChange={this.handleChange}
           />
         </div>
@@ -58,6 +59,7 @@ class EvaluationForm extends PureComponent {
               color="primary"
               onClick={() => this.onRadioBtnClick("Red")}
               active={this.state.colors.color === "red"}
+              value={this.state.color|| initialValues.color || ""}
             >
               Red
             </Button>
@@ -65,6 +67,7 @@ class EvaluationForm extends PureComponent {
               color="primary"
               onClick={() => this.onRadioBtnClick("Yellow")}
               active={this.state.colors.color === "yellow"}
+              value={this.state.color|| initialValues.color || ""}
             >
               Yellow
             </Button>
@@ -72,6 +75,7 @@ class EvaluationForm extends PureComponent {
               color="primary"
               onClick={() => this.onRadioBtnClick("Green")}
               active={this.state.colors.color === "green"}
+              value={this.state.color|| initialValues.color || ""}              
             >
               Green
             </Button>

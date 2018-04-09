@@ -13,6 +13,7 @@ import StudentPicture from "../components/StudentPicture";
 //import StudentForm from "../components/StudentForm";
 import NavBar from "../components/NavBar";
 import { fetchEvaluation } from "../actions/evaluations";
+import Button from "../components/Button";
 
 class StudentList extends PureComponent {
   static propTypes = {
@@ -24,8 +25,7 @@ class StudentList extends PureComponent {
         profilePicture: PropTypes.string.isRequired,
         color: PropTypes.string.isRequired
       })
-    ).isRequired,
-    selectStudent: PropTypes.func.isRequired
+    ).isRequired
   };
 
   componentWillMount() {
@@ -53,12 +53,12 @@ class StudentList extends PureComponent {
                     <StudentPicture profilePicture={x.profilePicture} />
                   </Link>
                 </div>
-
                 <CardSubtitle>{x.color}</CardSubtitle>
               </CardBody>
             </Card>
           ))}
         </CardColumns>
+        <Button />
         <div />
       </div>
     );

@@ -1,9 +1,11 @@
 import { SELECT_STUDENT } from "../actions/types";
+import { students } from "../lib"
 
-export default (state = [], action) => {
+
+export default (state = students, action) => {
   switch (action.type) {
     case SELECT_STUDENT:
-      return state.concat(action.payload);
+    return action.payload
     default:
       return state;
   }
